@@ -40,7 +40,7 @@ namespace Employee.Controllers
                 if (result.Succeeded)
                 {
                     await _signInManager.SignInAsync(user, isPersistent: false);
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Login", "Account");
                 }
 
                 foreach (var error in result.Errors)
@@ -72,7 +72,7 @@ namespace Employee.Controllers
 
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Employee");
                 }
 
                 ModelState.AddModelError("Login", "Invalid Login Attempt");

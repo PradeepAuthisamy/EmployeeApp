@@ -1,3 +1,7 @@
+using Employee.Providers;
+using Employee.Providers.Interface;
+using Employee.Services;
+using Employee.Services.Interface;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -20,6 +24,15 @@ namespace Employee
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<IEmployeeService, EmployeeService>();
+            services.AddScoped<IJWTProvider, JWTProvider>();
+            //services.GetService
+            services.AddHttpContextAccessor();
+            //services.AddHttpClient<IEmployeeService, EmployeeService>(client =>
+            // {
+            //     client.BaseAddress = new Uri("http://employeeinfo-api:30/api/Employee/");
+            //     client.DefaultRequestHeaders.Add("Accept", "application/json");
+            // });
             services.AddDbContext<EmployeeDataDBContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("EmployeeCredential")));
             services.AddIdentity<IdentityUser, IdentityRole>().
@@ -30,6 +43,9 @@ namespace Employee
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            //var serviceProvider = app.ApplicationServices;
+            //serviceProvider.GetService<IEmployeeService>();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -52,7 +68,7 @@ namespace Employee
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Account}/{action=Login}/{id?}");
             });
         }
     }

@@ -3,7 +3,7 @@ using System;
 
 namespace Employee.Migrations
 {
-    public partial class identityUserV2 : Migration
+    public partial class Employess : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

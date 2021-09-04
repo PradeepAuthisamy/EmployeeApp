@@ -1,0 +1,40 @@
+﻿@model Employee.Models.Employees
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <h4>Employees</h4>
+    <hr />
+    <dl class="row">
+    </dl>
+</div>
+<div>
+    @if (Model.EmployeesInfo != null && Model.EmployeesInfo.Any())
+    {
+        <table class="table table-striped table-bordered table-primary">
+            <tr class="table-secondary">
+                <th>ID</th>
+                <th>FirstName</th>
+                <th>MiddleName</th>
+                <th>LastName</th>
+                <th>Designation</th>
+                <th>Location</th>
+                <th>YearsOfExperience</th>
+            </tr>
+            @foreach (var emp in @Model.EmployeesInfo)
+            {
+                <tr>
+                    <td>@emp.ID</td>
+                    <td>@emp.FirstName</td>
+                    <td>@emp.MiddleName</td>
+                    <td>@emp.LastName</td>
+                    <td>@emp.Designation</td>
+                    <td>@emp.Location</td>
+                    <td>@emp.YearsOfExperience</td>
+                </tr>
+            }
+        </table>
+    }
+</div>
