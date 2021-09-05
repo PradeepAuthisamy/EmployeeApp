@@ -1,5 +1,6 @@
 ﻿using Employee.Models;
 using Employee.Services.Interface;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
@@ -28,6 +29,7 @@ namespace Employee.Controllers
             {
                 EmployeesInfo = employeesInfoModel
             };
+            viewModel.UserName = User.Identity.Name;
             return View(viewModel);
         }
     }

@@ -4,6 +4,7 @@ namespace Employee.Models
 {
     public class Employees
     {
+        public string UserName { get; set; }
         public List<EmployeeInfoModel> EmployeesInfo { get; set; }
     }
 
